@@ -11,13 +11,24 @@ tNum = ''
 while not tNum.isdigit():
     tNum = input("Введите номер билета: ")
 
-sum = 0
+summ = 0
 half = len(tNum)//2
 
 for digit in tNum[:half]:
-    sum += int(digit)
+    summ += int(digit)
 
 for digit in tNum[half:]:
-    sum -= int(digit)
+    summ -= int(digit)
 
-print(f"{tNum} >>> {'yes' if not sum else 'no'}")
+print(f"{tNum} >>> {'yes' if not summ else 'no'}")
+
+# ----------------------------------------------------------------------- #
+
+tNum = ''
+while not tNum.isdigit():
+    tNum = input("Введите номер билета: ")
+
+tNumArr = [int(i) for i in tNum]
+half = len(tNumArr)//2
+
+print(f"{tNum} >>> {'yes' if sum(tNumArr[:half]) == sum(tNumArr[half:]) else 'no'}")
