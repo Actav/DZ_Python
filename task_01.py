@@ -18,3 +18,19 @@ while N > 0:
 
 print(f"{inputNum} >>> Сумма чисел числа {inputNum} равна {sum}")
 
+'''
+Усложнение
+Для числа произвольной разрядности добавить в вывод строку с числами, например так:
+'''
+
+sum = 0
+digits_str = ""
+for digit in inputNum:
+    sum += int(digit)
+    digits_str += digit + " + "
+
+# удаляем последний символ "+" в строке с цифрами
+digits_str = digits_str[:-3]
+
+# выводим результат с помощью f-строки
+print(f"Сумма цифр числа {inputNum} равна {sum} ({digits_str})")
