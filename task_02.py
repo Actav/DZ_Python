@@ -10,7 +10,7 @@
 '''
 
 inputNum = ''
-while inputNum.isdigit() == False:
+while not inputNum.isdigit():
     inputNum = input("Введите общее количество журавликов: ")
 
 S = int(inputNum)

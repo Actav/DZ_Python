@@ -7,7 +7,7 @@
 100 >>> Сумма чисел числа 100 равна 1
 '''
 inputNum = ''
-while inputNum.isdigit() == False:
+while not inputNum.isdigit():
     inputNum = input("Введите число: ")
 
 N = int(inputNum)
