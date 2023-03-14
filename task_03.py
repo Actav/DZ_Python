@@ -24,9 +24,8 @@ print(f"{tNum} >>> {'yes' if not summ else 'no'}")
 
 # ----------------------------------------------------------------------- #
 
-tNum = ''
-while not tNum.isdigit():
-    tNum = input("Введите номер билета: ")
+while not (tNum := input("Введите номер билета: ")).isdigit():
+    print("Номер не валиден.")
 
 tNumArr = [int(i) for i in tNum]
 half = len(tNumArr)//2
