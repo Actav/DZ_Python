@@ -10,13 +10,7 @@
 5 6 -> 2 3
 """
 from math import sqrt
-
-
-def input_int(string):
-    while not (num := input(string)).isdigit():
-        print("Введите натуральное число.")
-
-    return int(num)
+from my_funcs import input_int
 
 
 def main():
