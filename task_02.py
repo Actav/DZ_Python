@@ -31,6 +31,7 @@ def plucking(_lst):
 
     return max_index, max_val
 
+
 lst = [11, 92, 1, 42, 15, 12, 11, 81]
 max_index, max_val = plucking(lst)
 print(f"Макс. кол-во ягод {max_val}, собрано для куста {max_index}")
