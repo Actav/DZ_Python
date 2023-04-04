@@ -7,5 +7,6 @@ def has_rhythm(text, return_counts=False):
 
     return (rhythm, counts) if return_counts else rhythm
 
+
 words = "пара-ра-рам рам-пуум-пупам па-ре-по-дам"
 print(has_rhythm(words, True))
