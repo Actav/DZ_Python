@@ -197,8 +197,7 @@ def menu(db: dict, last_id: int) -> None:
         elif user_input == "3":
             export_db(db, get_file_name())
         elif user_input == "4":
-            # db, last_id = import_db(db, last_id, get_file_name())
-            db, last_id = import_db(db, last_id, 'db')
+            db, last_id = import_db(db, last_id, get_file_name())
         elif user_input == "5":
             found_id = read(db, get_surname())
             print_record(db, found_id)
@@ -207,7 +206,7 @@ def menu(db: dict, last_id: int) -> None:
             update(db, found_id)
         elif user_input == "7":
             found_id = read(db, get_surname())
-            delete(db,found_id)
+            delete(db, found_id)
         else:
             break
 
