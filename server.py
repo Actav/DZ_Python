@@ -1,4 +1,3 @@
-#!/bin/python3
 import socket
 import threading
 
@@ -15,23 +14,25 @@ server.listen()
 clients = []
 nicknames = []
 
-
-def broadcast(message, client):
-    for c in clients:
-        if c == client:
+# Функция для широковещательной отправки сообщений клиентам
+def broadcast(message, local_client):
+    for client in clients:
+        if client == local_client:
             continue
-        c.send(message)
+        client.send(message)
 
-
+# Функция для удаления клиента из списка и закрытия соединения
 def remove_client(client):
     index = clients.index(client)
-    clients.remove(client)
     nickname = nicknames[index]
+
     broadcast('{} покинул чат!\n'.format(nickname).encode('utf-8'), client)
+
     nicknames.remove(nickname)
+    clients.remove(client)
     client.close()
 
-
+# Функция для обработки общения с клиентом
 def handle_client_communication(client):
     while True:
         try:
@@ -41,11 +42,11 @@ def handle_client_communication(client):
             remove_client(client)
             break
 
-
+# Функция для проверки уникальности никнейма
 def is_nickname_unique(nickname):
     return nickname not in nicknames
 
-
+# Функция для обработки подключения нового клиента
 def handle_new_client(client):
     client.send('NICK'.encode('utf-8'))
     nickname = client.recv(1024).decode('utf-8')
@@ -61,17 +62,15 @@ def handle_new_client(client):
     broadcast("{} присоединился!".format(nickname).encode('utf-8'), client)
     client.send('Подключено к серверу!'.encode('utf-8'))
 
-    threading.Thread(target=handle_client_communication,
-                     args=(client,)).start()
+    threading.Thread(target=handle_client_communication, args=(client,)).start()
 
-
+# Главный цикл сервера для ожидания новых подключений
 def server_mainloop():
     print("Сервер в режиме ожидания...\n")
     while True:
         client, address = server.accept()
         print("Подключено к {}".format(str(address)))
         handle_new_client(client)
-
 
 if __name__ == "__main__":
     try:
